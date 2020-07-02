@@ -1,0 +1,20 @@
+{
+  "mappings": [
+    {
+      "keywords": ["create index", "createIndex"],
+      "comment": "Indexes have been created concurrently in big tables"
+    },
+    {
+      "keywords": ["connection", "session", "CloseableHttpClient", "HttpClient"],
+      "comment": "Resources have been closed in finally block or using try-with-resources"
+    },
+    {
+      "keywords": ["RequestMapping", "GetMapping", "PostMapping", "PutMapping"],
+      "comment": "Endpoint URLs exposed by application use only small case"
+    },
+    {
+      "keywords": ["keyword1", "keyword2"],
+      "comment": "Expert comment"
+    }
+  ]
+}

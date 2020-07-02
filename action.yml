@@ -1,0 +1,13 @@
+name: 'Dynamic checklist'
+description: 'Analyze code and create a dynamic checklist, by commenting on PR'
+inputs:
+  mappingFile:
+    description: 'mapping of keywords with comment'
+    required: true
+    default: 'mapping.json'
+outputs:
+  checklist:
+    description: 'The final checklist in md format'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
