@@ -14,7 +14,8 @@ async function run() {
     const filePath = path.resolve(mappingFile)
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     const mappings = data.mappings
-    core.info('keyword to comment mappings found: \n' + mappings)
+    core.info('keyword to comment mappings found:')
+    core.info(mappings)
 
     const token = process.env.GITHUB_TOKEN || ''
     const octokit = new github.GitHub(token)
