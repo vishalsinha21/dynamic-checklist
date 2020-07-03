@@ -21,7 +21,7 @@ And that's the only input for this action. A mapping file which contains mapping
 
 Example mapping.json
 
-```
+```json
 {
   "mappings": [
     {
@@ -58,7 +58,7 @@ This action will analyze the diff of the pull request, and based on the diff and
 
 Example to configure it:
 
-```
+```yaml
 name: "Dynamic checklist"
 
 on:
@@ -87,7 +87,7 @@ jobs:
 
 The path to mapping file is relative to your repo root directory. For example, if you keep your mapping.json file inside a checklist directory inside repo's root directory then configure path as show below:
 
-```
+```yaml
         with:
           mappingFile: './checklist/mapping.json'
 ```
