@@ -1,10 +1,7 @@
 name: "units-test"
 on:
   pull_request:
-  push:
-    branches:
-      - master
-      - 'releases/*'
+    branches: [ master ]
 
 jobs:
   # unit tests
