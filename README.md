@@ -89,3 +89,6 @@ The path to mapping file is relative to your repo root directory. For example, i
         with:
           mappingFile: './checklist/mapping.json'
 ```
+
+Logs of this action does not prints the pull request diff by default, it gets printed at debug level. In case you are interested in looking at the pull request diff, and the newly added line then add secret 'ACTIONS_STEP_DEBUG' as true in the settings of your repo. 
+More details [here](https://docs.github.com/en/actions/configuring-and-managing-workflows/managing-a-workflow-run#:~:text=To%20enable%20step%20debug%20logging,Viewing%20logs%20to%20diagnose%20failures%22.) 
