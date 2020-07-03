@@ -59,6 +59,8 @@ This action will analyze the diff of the pull request, and based on the diff and
 Example to configure it:
 
 ```
+name: "Dynamic checklist"
+
 on:
   pull_request:
     branches: [ master ]
@@ -68,19 +70,19 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to create dynamic checklist
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
       - name: Dynamic checklist action
         id: dynamic_checklist
         uses: vishalsinha21/dynamic-checklist@v1
         with:
-          mappingFile: 'mapping.json'
+          mappingFile: './checklist/mapping.json'
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Get the output checklist
+      - name: Print checklist
         run: echo "The final checklist ${{ steps.dynamic_checklist.outputs.checklist }}"
-
 ```
 
 The path to mapping file is relative to your repo root directory. For example, if you keep your mapping.json file inside a checklist directory inside repo's root directory then configure path as show below:
