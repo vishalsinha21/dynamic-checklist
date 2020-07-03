@@ -5,9 +5,9 @@
 
 # Dynamic checklist
 
-Tests are nice, but they are not written for everything, especially when they seem obvious. 
+Tests are nice, but they are not written for everything, especially few things seems obvious or like a best practice. 
 
-For example, it's a best practice to close resources in finally block but this is not usually tested through a test case.
+For example, it's a best practice to close resources in finally block but this is not usually tested through a test case. Experienced developer usually finds this during review, but even they can miss sometimes. 
 
 Or may be you are creating index, which is ok if it's a small table, but it should be created concurrently for big tables so that rows are not locked for long time in production.
 
@@ -17,7 +17,7 @@ It will analyze the code for given keywords, given by you and will create a poin
 
 You can have multiple keywords map to same comment.
 
-And that's the only input for this action. A mapping file which contains mapping of keywords to comments.
+And that's the only input for this action. A mapping file which contains mapping of keywords to comments. You can keep this mapping.json at the root of your repo and even name it the way you want. Just ensure to refer it correctly in workflow file.
 
 Example mapping.json
 
@@ -73,7 +73,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Dynamic checklist action
         id: dynamic_checklist
-        uses: vishalsinha21/dc-github-action@v4
+        uses: vishalsinha21/dynamic-checklist@v1
         with:
           mappingFile: 'mapping.json'
         env:
@@ -83,3 +83,9 @@ jobs:
 
 ```
 
+The path to mapping file is relative to your repo root directory. For example, if you keep your mapping.json file inside a checklist directory inside repo's root directory then configure path as show below:
+
+```
+        with:
+          mappingFile: './checklist/mapping.json'
+```

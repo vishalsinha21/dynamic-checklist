@@ -9,13 +9,12 @@ async function run() {
   try {
 
     const mappingFile = core.getInput('mappingFile')
-    console.log('mappingFile: ' + mappingFile)
+    core.info('mappingFile: ' + mappingFile)
 
     const filePath = path.resolve(mappingFile)
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     const mappings = data.mappings
-    console.log('keyword to comment mappings found: ')
-    console.log(mappings)
+    core.info('keyword to comment mappings found: \n' + JSON.stringify(mappings))
 
     const token = process.env.GITHUB_TOKEN || ''
     const octokit = new github.GitHub(token)
@@ -28,18 +27,19 @@ async function run() {
       headers: {accept: "application/vnd.github.v3.diff"}
     });
     const prDiff = prResponse.data;
-    console.log('Pull request diff:')
-    console.log(prDiff)
-    console.log('----------------')
+    core.debug('Pull request diff:')
+    core.debug('----------------')
+    core.debug(prDiff)
+    core.debug('----------------')
 
     const onlyAddedLines = Checklist.getOnlyAddedLines(prDiff);
-    console.log('Newly added lines:')
-    console.log(onlyAddedLines)
+    core.debug('Newly added lines:')
+    core.debug('----------------')
+    core.debug(onlyAddedLines)
+    core.debug('----------------')
 
     const checklist = Checklist.getFinalChecklist(onlyAddedLines, mappings);
-
     if (checklist && checklist.trim().length > 0) {
-      console.log('checklist: ' + checklist)
       octokit.issues.createComment({
         issue_number: context.payload.pull_request.number,
         owner: context.repo.owner,
@@ -47,7 +47,7 @@ async function run() {
         body: checklist
       })
     } else {
-      console.log("No dynamic checklist was created based on code difference and mapping file")
+      core.info("No dynamic checklist was created based on code difference and mapping file")
     }
 
     core.setOutput('checklist', checklist);
