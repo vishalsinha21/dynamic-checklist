@@ -5,7 +5,7 @@
 
 # Dynamic checklist
 
-Tests are nice, but they are not written for everything, especially few things seems obvious or like a best practice. 
+Tests are nice, but they are not written for everything, especially when few things seems obvious or like a best practice. 
 
 For example, it's a best practice to close resources in finally block but this is not usually tested through a test case. Experienced developer usually finds this during review, but even they can miss sometimes. 
 
