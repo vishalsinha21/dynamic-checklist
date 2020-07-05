@@ -72,8 +72,31 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+      - name: Dynamic checklist action
+        uses: vishalsinha21/dynamic-checklist@v1
         with:
-          ref: ${{ github.head_ref }}
+          mappingFile: 'mapping.json'
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+```
+
+
+Here is one more example to configure it, and print the output (formatted checklist) of dynamic checklist action
+```yaml
+name: "Dynamic checklist"
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  checklist_job:
+    runs-on: ubuntu-latest
+    name: A job to create dynamic checklist
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
       - name: Dynamic checklist action
         id: dynamic_checklist
         uses: vishalsinha21/dynamic-checklist@v1
